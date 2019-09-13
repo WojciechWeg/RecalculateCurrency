@@ -30,13 +30,24 @@ public class CurrencyService {
         this.codeMidMap = new HashMap<>();
         addToCodeMidMap(extractRates(connectAndRetrieveJSONArray(tableA_URL)));
         addToCodeMidMap(extractRates(connectAndRetrieveJSONArray(tableB_URL)));
-        System.out.println(codeMidMap);
+
     }
 
-    public RecalculatedCurrency calculate(){
-        return new RecalculatedCurrency(BigDecimal.valueOf(20L), Currency.getInstance("PLN"));
-    }
+    public RecalculatedCurrency calculate(Double amount, String currencyFrom, String currencyTo ){
 
+        if(currencyFrom.equals("PLN")){
+            Double mid = codeMidMap.get(currencyTo);
+            Double newAmount = amount/mid;
+            return new RecalculatedCurrency(BigDecimal.valueOf(newAmount),Currency.getInstance(currencyTo));
+        }
+        else{
+             Double midFrom = codeMidMap.get(currencyFrom);
+             Double midTo = codeMidMap.get(currencyTo);
+             Double newAmount = amount*midFrom/midTo;
+             return  new RecalculatedCurrency(BigDecimal.valueOf(newAmount),Currency.getInstance(currencyTo));
+        }
+
+    }
 
     private JSONArray connectAndRetrieveJSONArray(String urlString) throws IOException, ParseException {
 

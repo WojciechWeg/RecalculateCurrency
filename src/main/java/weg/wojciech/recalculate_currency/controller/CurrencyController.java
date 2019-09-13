@@ -2,15 +2,10 @@ package weg.wojciech.recalculate_currency.controller;
 
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import weg.wojciech.recalculate_currency.model.RecalculatedCurrency;
 import weg.wojciech.recalculate_currency.service.CurrencyService;
 
-import java.math.BigDecimal;
-import java.util.Currency;
 
 @RestController
 @RequestMapping("currency")
@@ -24,9 +19,11 @@ public class CurrencyController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public RecalculatedCurrency recalculatedCurrency()  {
+    public RecalculatedCurrency recalculatedCurrency(@RequestParam Double amount,
+                                                     @RequestParam String currencyFrom,
+                                                     @RequestParam String currencyTo)  {
 
-            return  new RecalculatedCurrency(BigDecimal.valueOf(10L), Currency.getInstance("USD"));
+            return currencyService.calculate(amount,currencyFrom,currencyTo);
     }
 
 
