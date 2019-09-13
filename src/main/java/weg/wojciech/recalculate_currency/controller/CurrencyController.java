@@ -1,5 +1,6 @@
 package weg.wojciech.recalculate_currency.controller;
 
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,8 @@ public class CurrencyController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public RecalculatedCurrency recalculatedCurrency(){
+    public RecalculatedCurrency recalculatedCurrency()  {
+
             return  new RecalculatedCurrency(BigDecimal.valueOf(10L), Currency.getInstance("USD"));
     }
 
