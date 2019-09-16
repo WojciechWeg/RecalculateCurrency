@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
+import weg.wojciech.recalculate_currency.exceptions.ResourceNotFoundException;
 import weg.wojciech.recalculate_currency.model.RecalculatedCurrency;
 
 import java.io.BufferedInputStream;
@@ -35,6 +36,8 @@ public class CurrencyService {
 
     public RecalculatedCurrency calculate(Double amount, String currencyFrom, String currencyTo ){
 
+        validateIfContains(currencyFrom, currencyTo);
+
         if(currencyFrom.equals("PLN")){
             Double mid = codeMidMap.get(currencyTo);
             Double newAmount = amount/mid;
@@ -46,6 +49,16 @@ public class CurrencyService {
              Double newAmount = amount*midFrom/midTo;
              return  new RecalculatedCurrency(BigDecimal.valueOf(newAmount),Currency.getInstance(currencyTo));
         }
+
+    }
+
+    private void validateIfContains(String currencyFrom, String currencyTo) {
+
+        if(!codeMidMap.containsKey(currencyTo))
+            throw new ResourceNotFoundException("No such code");
+
+        if(!currencyFrom.equals("PLN") && !codeMidMap.containsKey(currencyFrom))
+                throw new ResourceNotFoundException("No such code");
 
     }
 
@@ -79,7 +92,7 @@ public class CurrencyService {
 
     }
 
-    private JSONArray extractRates(JSONArray jsonArray) throws ParseException {
+    private JSONArray extractRates(JSONArray jsonArray) {
 
         JSONObject jsonContentObject = (JSONObject) jsonArray.get(0);
 
