@@ -99,8 +99,8 @@ public class CurrencyControllerTest {
         JSONParser parser = new JSONParser();
         JSONObject jsonResponse = (JSONObject) parser.parse(result.getResponse().getContentAsString());
 
-        assertEquals(jsonResponse.get("status"), "BAD_REQUEST");
-        assertEquals(jsonResponse.get("messages"), "recalculatedCurrency.currencyFrom: currencyFrom code lenght must be 3");
+        assertEquals( "BAD_REQUEST",jsonResponse.get("status"));
+        assertEquals( "recalculatedCurrency.currencyFrom: currencyFrom code lenght must be 3",jsonResponse.get("messages"));
 
     }
 
@@ -122,8 +122,8 @@ public class CurrencyControllerTest {
         JSONParser parser = new JSONParser();
         JSONObject jsonResponse = (JSONObject) parser.parse(result.getResponse().getContentAsString());
 
-        assertEquals(jsonResponse.get("status"), "BAD_REQUEST");
-        assertEquals(jsonResponse.get("messages"), "recalculatedCurrency.amount: must be greater than or equal to 0");
+        assertEquals("BAD_REQUEST",jsonResponse.get("status") );
+        assertEquals("recalculatedCurrency.amount: must be greater than or equal to 0",jsonResponse.get("messages"));
 
     }
 
