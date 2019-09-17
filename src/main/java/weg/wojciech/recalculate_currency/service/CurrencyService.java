@@ -12,7 +12,6 @@ import weg.wojciech.recalculate_currency.model.RecalculatedCurrency;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -23,7 +22,7 @@ import java.util.HashMap;
 @Service
 public class CurrencyService {
 
-    private String tableA_URL = "http://api.nbp.pl/api/exchangerates/tables/a";
+     String tableA_URL = "http://api.nbp.pl/api/exchangerates/tables/a";
     private String tableB_URL = "http://api.nbp.pl/api/exchangerates/tables/b";
     private HashMap<String,Double> codeMidMap;
 
@@ -34,6 +33,10 @@ public class CurrencyService {
 
     }
 
+    public HashMap<String,Double> getCodeMidMap() {
+        return codeMidMap;
+    }
+
     public RecalculatedCurrency calculate(Double amount, String currencyFrom, String currencyTo ){
 
         validateIfContains(currencyFrom, currencyTo);
@@ -41,13 +44,13 @@ public class CurrencyService {
         if(currencyFrom.equals("PLN")){
             Double mid = codeMidMap.get(currencyTo);
             Double newAmount = amount/mid;
-            return new RecalculatedCurrency(BigDecimal.valueOf(newAmount),Currency.getInstance(currencyTo));
+            return new RecalculatedCurrency(newAmount,Currency.getInstance(currencyTo));
         }
         else{
              Double midFrom = codeMidMap.get(currencyFrom);
              Double midTo = codeMidMap.get(currencyTo);
              Double newAmount = amount*midFrom/midTo;
-             return  new RecalculatedCurrency(BigDecimal.valueOf(newAmount),Currency.getInstance(currencyTo));
+             return  new RecalculatedCurrency(newAmount,Currency.getInstance(currencyTo));
         }
 
     }

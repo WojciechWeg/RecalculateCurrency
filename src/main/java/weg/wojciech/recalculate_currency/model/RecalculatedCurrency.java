@@ -1,24 +1,24 @@
 package weg.wojciech.recalculate_currency.model;
 
-import java.math.BigDecimal;
+
 import java.util.Currency;
 import java.util.Objects;
 
 public class RecalculatedCurrency {
 
-    private BigDecimal amount;
+    private Double amount;
     private Currency currency;
 
-    public RecalculatedCurrency(BigDecimal amount, Currency currency) {
+    public RecalculatedCurrency(Double amount, Currency currency) {
         this.amount = amount;
         this.currency = currency;
     }
 
-    public BigDecimal getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
