@@ -1,0 +1,36 @@
+= Recalculate Currency API Service Docs
+Wojciech Węgierek;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+
+== RECALCULATE CURRENCY
+
+One showing how to make a request using cURL:
+
+include::{snippets}\currency\calculate\curl-request.adoc[]
+
+One showing the HTTP request:
+
+include::{snippets}\currency\calculate\http-request.adoc[]
+
+Parameter description:
+
+include::{snippets}\currency\calculate\request-parameters.adoc[]
+
+Parameter requirements:
+
+amount must me positive. +
+currencyFrom must be of length 3. +
+currencyTo muse be of length 3.
+
+And one showing the HTTP response:
+
+include::{snippets}\currency\calculate\http-response.adoc[]
+
+Response Body:
+include::{snippets}\currency\calculate\response-body.adoc[]
+
+Response Fields:
+include::{snippets}\currency\calculate\response-fields.adoc[]
+
