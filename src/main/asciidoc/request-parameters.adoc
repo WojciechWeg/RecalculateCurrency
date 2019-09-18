@@ -1,0 +1,16 @@
+|===
+|Parameter|Description|Constraints
+
+|`+amount+`
+|Amount of money to be recalculated
+|Must me positive
+
+|`+currencyFrom+`
+|Currency of input money
+|must be of length 3
+
+|`+currencyTo+`
+|Currency of returned money
+|must be of length 3
+
+|===

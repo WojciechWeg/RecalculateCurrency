@@ -20,9 +20,7 @@ include::{snippets}\currency\calculate\request-parameters.adoc[]
 
 Parameter requirements:
 
-amount must me positive. +
-currencyFrom must be of length 3. +
-currencyTo muse be of length 3.
+include::request-parameters.adoc[]
 
 And one showing the HTTP response:
 
@@ -34,3 +32,8 @@ include::{snippets}\currency\calculate\response-body.adoc[]
 Response Fields:
 include::{snippets}\currency\calculate\response-fields.adoc[]
 
+You can find supported currencies here:
+
+link:currencies_available.html[Currencies available]
+
+Those are link:https://en.wikipedia.org/wiki/ISO_4217[ISO 4217 codes]
