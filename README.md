@@ -12,3 +12,5 @@
  To start project run start.bat.
  
  Java 1.8 is required.
+ 
+ Project was made in Spring Boot Framework.
